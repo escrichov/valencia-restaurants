@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="container">
-        <div class="row">
+        <div class="row p-3">
             <div class="filter filter-style filter-all filter-applied" data-filter="all">all</div>
             {% for tag in tags %}
             <div class="filter filter-style filter-tag" data-filter="{{tag}}">{{tag}}</div>
@@ -28,9 +28,9 @@
             <div class="filter filter-style filter-zone" data-filter="{{zone}}">{{zone}}</div>
             {% endfor %}
         </div>
-        <div class="row">
+        <div class="row pt-3">
             {% for restaurant in restaurants %}
-            <div class="col-xs-12 col-md-6 col-lg-4 p-3">
+            <div class="col-xs-12 col-md-6 col-lg-4">
                 <div class="card" data-filters='{{restaurant.filters_json}}'>
                     <div class="card-image" data-current-image="0" data-image-list='{{restaurant.images_json}}' style='background-image: url("{{restaurant.image}}");'>
                         {% if restaurant.images|length > 1  %}
