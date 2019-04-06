@@ -17,7 +17,7 @@ h1 {
 }
 
 .button-arrow-left {
-    background:url("/static/img/icon-arrow-left.png") no-repeat;
+    background:url(/static/img/icon-arrow-left.png) no-repeat;
     width: 32px;
     height: 32px;
     cursor:pointer;
@@ -25,7 +25,7 @@ h1 {
 }
 
 .button-arrow-right {
-    background:url("/static/img/icon-arrow-right.png") no-repeat;
+    background:url(/static/img/icon-arrow-right.png) no-repeat;
     width: 32px;
     height: 32px;
     cursor:pointer;
@@ -129,33 +129,33 @@ h1 {
 }
 
 .icon-instagram {
-    background-image: url("/static/img/icon-instagram.png");
+    background-image: url(/static/img/icon-instagram.png);
 }
 .icon-instagram:hover {
-    background-image: url("/static/img/icon-instagram-hover.png");
+    background-image: url(/static/img/icon-instagram-hover.png);
 }
 
 .icon-tripadvisor {
-    background-image: url("/static/img/icon-tripadvisor.png");
+    background-image: url(/static/img/icon-tripadvisor.png);
 }
 .icon-tripadvisor:hover {
-    background-image: url("/static/img/icon-tripadvisor-hover.png");
+    background-image: url(/static/img/icon-tripadvisor-hover.png);
 }
 .icon-booking {
-    background-image: url("static/img/icon-booking.png");
+    background-image: url(static/img/icon-booking.png);
 }
 .icon-booking:hover {
-    background-image: url("static/img/icon-booking-hover.png");
+    background-image: url(static/img/icon-booking-hover.png);
 }
 .icon-menu {
-    background-image: url("static/img/icon-menu.png");
+    background-image: url(static/img/icon-menu.png);
 }
 .icon-menu:hover {
-    background-image: url("/static/img/icon-menu-hover.png");
+    background-image: url(/static/img/icon-menu-hover.png);
 }
 .icon-google-maps{
-    background-image: url("/static/img/icon-google-maps.png");
+    background-image: url(/static/img/icon-google-maps.png);
 }
 .icon-google-maps:hover{
-    background-image: url("/static/img/icon-google-maps-hover.png");
+    background-image: url(/static/img/icon-google-maps-hover.png);
 }
