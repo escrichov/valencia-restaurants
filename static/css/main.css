@@ -142,13 +142,13 @@ h1 {
     background-image: url(/static/img/icon-tripadvisor-hover.png);
 }
 .icon-booking {
-    background-image: url(static/img/icon-booking.png);
+    background-image: url(/static/img/icon-booking.png);
 }
 .icon-booking:hover {
-    background-image: url(static/img/icon-booking-hover.png);
+    background-image: url(/static/img/icon-booking-hover.png);
 }
 .icon-menu {
-    background-image: url(static/img/icon-menu.png);
+    background-image: url(/static/img/icon-menu.png);
 }
 .icon-menu:hover {
     background-image: url(/static/img/icon-menu-hover.png);
