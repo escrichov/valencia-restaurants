@@ -1,5 +1,6 @@
 import gspread
 import json
+import os
 from jinja2 import Environment, FileSystemLoader
 from oauth2client.service_account import ServiceAccountCredentials
 
@@ -11,7 +12,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 # Example template: https://table2site.com/site/valenciafood
 
 scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-SPREADSHEET_ID = '1JYX9GT1nfGczuC7DSBTsmimsX3C8J60R5AQW0wBtlrs'
+SPREADSHEET_ID = os.environ.get('SPREADSHEET_ID')
 
 # Authorization
 import time
@@ -83,7 +84,7 @@ tags.sort()
 zones = get_all_zones(restaurants)
 zones.sort()
 
-env = Environment(loader=FileSystemLoader('.'))
+env = Environment(loader=FileSystemLoader('templates'))
 template = env.get_template('main.html')
 output_from_parsed_template = template.render({'restaurants': restaurants, 'tags': tags, 'zones': zones})
 
