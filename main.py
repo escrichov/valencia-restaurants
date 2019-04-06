@@ -56,6 +56,12 @@ class Restaurant():
         self.images = []
         if self.image:
             self.images.append(self.image)
+        if self.imagefood1:
+            self.images.append(self.imagefood1)
+        if self.imagefood2:
+            self.images.append(self.imagefood2)
+        if self.imagedessert:
+            self.images.append(self.imagedessert)
         if self.imageplace:
             self.images.append(self.imageplace)
         self.images_json = json.dumps(self.images)
