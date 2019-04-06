@@ -1,0 +1,161 @@
+.hero {
+    background-color: #8B46FF;
+    color: #FFF;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    text-align: center;
+    border-radius: 0;
+}
+
+h1 {
+    font-size: 2.75em;
+    line-height: 1.3;
+}
+
+.filter {
+    cursor: pointer;
+}
+
+.button-arrow-left {
+    background:url("icon-arrow-left.png") no-repeat;
+    width: 32px;
+    height: 32px;
+    cursor:pointer;
+    border:none;
+}
+
+.button-arrow-right {
+    background:url("icon-arrow-right.png") no-repeat;
+    width: 32px;
+    height: 32px;
+    cursor:pointer;
+    border:none;
+}
+
+.filter-style {
+    background: mediumpurple;
+    color: white;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 5px;
+    display:inline-block;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.filter-applied {
+    background: green !important;
+}
+
+.filter-tag {
+    background: mediumpurple;
+}
+
+.filter-zone {
+    background: mediumseagreen;
+}
+
+.filter-all {
+    background: mediumblue;
+}
+
+
+.card {
+    width: 100%;
+    height: 425px;
+}
+
+.card-image {
+    position: relative;
+    height: 200px;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.card-image-button-left {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+}
+
+.card-image-button-right {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+}
+
+.card-content {
+    font-size: .85em;
+    padding: 20px;
+    height: 225px;
+}
+
+.card-tag {
+    background: mediumpurple;
+    color: white;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 5px;
+    display:inline-block;
+    cursor: pointer;
+}
+
+.card-zone {
+    background: mediumseagreen;
+    color: white;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 5px;
+    display:inline-block;
+    cursor: pointer;
+}
+
+.card-icons {
+    display: inline-block;
+}
+
+.icon {
+    display: inline-block;
+    height: 25px;
+    width: 25px;
+    margin-right: 5px;
+}
+
+.icon-instagram {
+    background-image: url("icon-instagram.png");
+}
+.icon-instagram:hover {
+    background-image: url("icon-instagram-hover.png");
+}
+
+.icon-tripadvisor {
+    background-image: url("icon-tripadvisor.png");
+}
+.icon-tripadvisor:hover {
+    background-image: url("icon-tripadvisor-hover.png");
+}
+.icon-booking {
+    background-image: url("icon-booking.png");
+}
+.icon-booking:hover {
+    background-image: url("icon-booking-hover.png");
+}
+.icon-menu {
+    background-image: url("icon-menu.png");
+}
+.icon-menu:hover {
+    background-image: url("icon-menu-hover.png");
+}
+.icon-google-maps{
+    background-image: url("icon-google-maps.png");
+}
+.icon-google-maps:hover{
+    background-image: url("icon-google-maps-hover.png");
+}

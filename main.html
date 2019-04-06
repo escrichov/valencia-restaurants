@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
+
+
+    <title>Restaurants</title>
+  </head>
+  <body>
+    <div class="jumbotron hero">
+        <div class="container">
+            <h1>Restaurantes de Valencia</h1>
+            <p>Lista hecha a mano con todos los restaurantes de Valencia que me han recomendado</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="filter filter-style filter-all filter-applied" data-filter="all">all</div>
+            {% for tag in tags %}
+            <div class="filter filter-style filter-tag" data-filter="{{tag}}">{{tag}}</div>
+            {% endfor %}
+            {% for zone in zones %}
+            <div class="filter filter-style filter-zone" data-filter="{{zone}}">{{zone}}</div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            {% for restaurant in restaurants %}
+            <div class="col-xs-12 col-md-6 col-lg-4 p-3">
+                <div class="card" data-filters='{{restaurant.filters_json}}'>
+                    <div class="card-image" data-current-image="0" data-image-list='{{restaurant.images_json}}' style='background-image: url("{{restaurant.image}}");'>
+                        {% if restaurant.images|length > 1  %}
+                            <div class="button-arrow-left card-image-button-left"></div>
+                            <div class="button-arrow-right card-image-button-right"></div>
+                        {% endif %}
+                    </div>
+                    <div class="card-content">
+                        <a target="_blank" href="{{restaurant.web}}"><h4 class="card_title">{{restaurant.title}}</h4></a>
+                        <div class="card-icons">
+                            {% if restaurant.instagram %}<a target="_blank" class="icon icon-instagram" href="{{restaurant.instagram}}"></a>{% endif %}
+                            {% if restaurant.tripadvisor %}<a target="_blank" class="icon icon-tripadvisor" href="{{restaurant.tripadvisor}}"></a>{% endif %}
+                            {% if restaurant.googlemaps %}<a target="_blank" class="icon icon-google-maps" href="{{restaurant.googlemaps}}"></a>{% endif %}
+                            {% if restaurant.booking %}<a target="_blank" class="icon icon-booking" href="{{restaurant.booking}}"></a>{% endif %}
+                            {% if restaurant.menu %}<a target="_blank" class="icon icon-menu" href="{{restaurant.menu}}"></a>{% endif %}
+                        </div>
+                        <p class="card_description">{{restaurant.description}}</p>
+                        <p class="card_description">{{restaurant.price}}</p>
+                        {% for tag in restaurant.tags %}
+                            <p class="filter card-tag" data-filter="{{tag}}">{{tag}}</p>
+                        {% endfor %}
+                        {% for zone in restaurant.zones %}
+                            <p class="filter card-zone" data-filter="{{zone}}">{{zone}}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
