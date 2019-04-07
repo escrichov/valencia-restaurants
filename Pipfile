@@ -16,6 +16,7 @@ google = "*"
 oauth2client = "*"
 gspread = "*"
 jinja2 = "*"
+pillow = "*"
 
 [requires]
 python_version = "3.7"

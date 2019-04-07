@@ -3,6 +3,7 @@ import json
 import os
 from jinja2 import Environment, FileSystemLoader
 from oauth2client.service_account import ServiceAccountCredentials
+from optimizeimage import optimize_url
 
 # https://developers.google.com/apis-explorer/?hl=es#p/drive/v3/
 # https://developers.google.com/identity/protocols/OAuth2ServiceAccount#delegatingauthority
@@ -55,14 +56,19 @@ class Restaurant():
         self.filters_json = json.dumps(self.tags + self.zones)
         self.images = []
         if self.image:
+            self.image = optimize_url(self.image, 'images')
             self.images.append(self.image)
         if self.imagefood1:
+            self.imagefood1 = optimize_url(self.imagefood1, 'images')
             self.images.append(self.imagefood1)
         if self.imagefood2:
+            self.imagefood2 = optimize_url(self.imagefood2, 'images')
             self.images.append(self.imagefood2)
         if self.imagedessert:
+            self.imagedessert = optimize_url(self.imagedessert, 'images')
             self.images.append(self.imagedessert)
         if self.imageplace:
+            self.imageplace = optimize_url(self.imageplace, 'images')
             self.images.append(self.imageplace)
         self.images_json = json.dumps(self.images)
 
