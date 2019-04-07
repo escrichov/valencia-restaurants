@@ -12,14 +12,17 @@
     <title>Restaurantes de Valencia</title>
   </head>
   <body>
-    <div class="jumbotron hero">
+    <div class="hero pt-4 pb-4">
         <div class="container">
-            <h1>Restaurantes de Valencia</h1>
+            <h2>Restaurantes de Valencia</h2>
             <p>Lista hecha a mano con todos los restaurantes de Valencia que me han recomendado</p>
         </div>
     </div>
     <div class="container">
         <div class="row p-3">
+            <button class="showfilters btn btn-primary">Show Filters</button>
+        </div>
+        <div class="row p-3 filters hidden">
             <div class="filter filter-style filter-all filter-applied" data-filter="all">all</div>
             
             <div class="filter filter-style filter-tag" data-filter="almuerzos">almuerzos</div>
@@ -87,6 +90,8 @@
             <div class="filter filter-style filter-tag" data-filter="sushi">sushi</div>
             
             <div class="filter filter-style filter-tag" data-filter="tapas">tapas</div>
+            
+            <div class="filter filter-style filter-tag" data-filter="tartas">tartas</div>
             
             <div class="filter filter-style filter-tag" data-filter="top">top</div>
             
@@ -3364,7 +3369,7 @@
             </div>
             
             <div class="col-xs-12 col-md-6 col-lg-4 mb-5">
-                <div class="card" data-filters='["brunch", "Centro", "Plaza X\u00faquer"]'>
+                <div class="card" data-filters='["brunch", "tartas", "Centro", "Plaza X\u00faquer"]'>
                     <div class="card-image" data-current-image="0" data-image-list='["images/27ac398b957d99dc46e1250cd42633ce-512x512.jpg"]' style='background-image: url("images/27ac398b957d99dc46e1250cd42633ce-512x512.jpg");'>
                         
                     </div>
@@ -3382,6 +3387,8 @@
                         
                             <p class="filter card-tag" data-filter="brunch">brunch</p>
                         
+                            <p class="filter card-tag" data-filter="tartas">tartas</p>
+                        
                         
                             <p class="filter card-zone" data-filter="Centro">Centro</p>
                         
@@ -3392,7 +3399,7 @@
             </div>
             
             <div class="col-xs-12 col-md-6 col-lg-4 mb-5">
-                <div class="card" data-filters='["La Patacona"]'>
+                <div class="card" data-filters='["brunch", "tartas", "La Patacona"]'>
                     <div class="card-image" data-current-image="0" data-image-list='["images/fc44b4a554e42856509cce5bf4a6aabb-512x512.jpg"]' style='background-image: url("images/fc44b4a554e42856509cce5bf4a6aabb-512x512.jpg");'>
                         
                     </div>
@@ -3407,6 +3414,10 @@
                         </div>
                         <p class="card_description">Vistas a la playa</p>
                         <p class="card_description"></p>
+                        
+                            <p class="filter card-tag" data-filter="brunch">brunch</p>
+                        
+                            <p class="filter card-tag" data-filter="tartas">tartas</p>
                         
                         
                             <p class="filter card-zone" data-filter="La Patacona">La Patacona</p>

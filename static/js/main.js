@@ -30,7 +30,12 @@ function clickEvent (event) {
 }
 
 $( document ).ready(function() {
-
+    $(".showfilters").click(function(event) {
+        $(".filters").toggle();
+        $(event.target).text(function(i, text){
+            return text === "Show Filters" ? "Hide Filters" : "Show Filters";
+        });
+    });
     $( ".filter" ).click(clickEvent);
     $( ".button-arrow-left" ).click(function(event){
         var nextImage = $(event.target).parent().data('current-image');

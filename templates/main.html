@@ -12,14 +12,17 @@
     <title>Restaurantes de Valencia</title>
   </head>
   <body>
-    <div class="jumbotron hero">
+    <div class="hero pt-4 pb-4">
         <div class="container">
-            <h1>Restaurantes de Valencia</h1>
+            <h2>Restaurantes de Valencia</h2>
             <p>Lista hecha a mano con todos los restaurantes de Valencia que me han recomendado</p>
         </div>
     </div>
     <div class="container">
         <div class="row p-3">
+            <button class="showfilters btn btn-primary">Show Filters</button>
+        </div>
+        <div class="row p-3 filters hidden">
             <div class="filter filter-style filter-all filter-applied" data-filter="all">all</div>
             {% for tag in tags %}
             <div class="filter filter-style filter-tag" data-filter="{{tag}}">{{tag}}</div>
