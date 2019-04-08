@@ -23,7 +23,7 @@ SPREADSHEET_ID = os.environ.get('SPREADSHEET_ID')
 TEMPLATES_DIR = 'templates'
 OUTPUT_TEMPLATES_DIR = '.'
 CACHE_FILE = '.gspread_cache'
-locale.setlocale(locale.LC_TIME, "es_ES")
+locale.setlocale(locale.LC_TIME, "es_ES.utf8")
 
 
 class Restaurant():
