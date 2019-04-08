@@ -1,9 +1,6 @@
 #!/bin/bash
 
-DIRECTORY=.
 
-
-cd $DIRECTORY
 git fetch
 UPSTREAM=${1:-'@{u}'}
 LOCAL=$(git rev-parse @)
