@@ -42,7 +42,7 @@ $( document ).ready(function() {
     $(".showfilters").click(function(event) {
         $(".filters").toggle();
         $(event.target).text(function(i, text){
-            return text === "Show Filters" ? "Hide Filters" : "Show Filters";
+            return text === "Mostrar Filtros" ? "Ocultar Filtros" : "Mostrar Filtros";
         });
     });
     $( ".filter" ).click(clickFilterEvent);
