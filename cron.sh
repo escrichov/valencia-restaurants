@@ -15,6 +15,9 @@ elif [ $LOCAL = $BASE ]; then
     ONLY_BUILD_IF_DATA_CHANGES=False pipenv run python main.py
 elif [ $REMOTE = $BASE ]; then
     echo "Need to push"
+    git pull
+    git push
+    exit 1
 else
     echo "Git Error"
     exit 1
