@@ -6,6 +6,8 @@ from oauth2client.service_account import ServiceAccountCredentials
 from optimizeimage import optimize_url
 from os import listdir
 from os.path import isfile, join
+import time
+import locale
 
 
 # https://developers.google.com/apis-explorer/?hl=es#p/drive/v3/
@@ -19,6 +21,7 @@ scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/au
 SPREADSHEET_ID = os.environ.get('SPREADSHEET_ID')
 TEMPLATES_DIR = 'templates'
 OUTPUT_TEMPLATES_DIR = '.'
+locale.setlocale(locale.LC_TIME, "es_ES")
 
 # Authorization
 import time
@@ -107,6 +110,12 @@ env = Environment(loader=FileSystemLoader(TEMPLATES_DIR))
 template_files = [f for f in listdir(TEMPLATES_DIR) if isfile(join(TEMPLATES_DIR, f))]
 for f in template_files:
     template = env.get_template(f)
-    output_from_parsed_template = template.render({'restaurants': restaurants, 'tags': tags, 'zones': zones})
+    context = {
+        'restaurants': restaurants,
+        'tags': tags,
+        'zones': zones,
+        'date': time.strftime("%a, %d %b %Y %H:%M:%S"),
+    }
+    output_from_parsed_template = template.render(context)
     with open(join(OUTPUT_TEMPLATES_DIR, f), "w") as fh:
         fh.write(output_from_parsed_template)
