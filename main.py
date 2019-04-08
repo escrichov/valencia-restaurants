@@ -4,6 +4,9 @@ import os
 from jinja2 import Environment, FileSystemLoader
 from oauth2client.service_account import ServiceAccountCredentials
 from optimizeimage import optimize_url
+from os import listdir
+from os.path import isfile, join
+
 
 # https://developers.google.com/apis-explorer/?hl=es#p/drive/v3/
 # https://developers.google.com/identity/protocols/OAuth2ServiceAccount#delegatingauthority
@@ -14,6 +17,8 @@ from optimizeimage import optimize_url
 
 scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
 SPREADSHEET_ID = os.environ.get('SPREADSHEET_ID')
+TEMPLATES_DIR = 'templates'
+OUTPUT_TEMPLATES_DIR = '.'
 
 # Authorization
 import time
@@ -96,9 +101,12 @@ tags.sort()
 zones = get_all_zones(restaurants)
 zones.sort()
 
-env = Environment(loader=FileSystemLoader('templates'))
-template = env.get_template('main.html')
-output_from_parsed_template = template.render({'restaurants': restaurants, 'tags': tags, 'zones': zones})
+env = Environment(loader=FileSystemLoader(TEMPLATES_DIR))
 
-with open("index.html", "w") as fh:
-    fh.write(output_from_parsed_template)
+
+template_files = [f for f in listdir(TEMPLATES_DIR) if isfile(join(TEMPLATES_DIR, f))]
+for f in template_files:
+    template = env.get_template(f)
+    output_from_parsed_template = template.render({'restaurants': restaurants, 'tags': tags, 'zones': zones})
+    with open(join(OUTPUT_TEMPLATES_DIR, f), "w") as fh:
+        fh.write(output_from_parsed_template)

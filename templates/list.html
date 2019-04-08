@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/css/main.css">
+
+    <title>Restaurantes de Valencia</title>
+  </head>
+  <body>
+    <div class="hero pt-4 pb-4">
+        <div class="container">
+            <h2>Restaurantes de Valencia</h2>
+            <p>Lista hecha a mano con todos los restaurantes de Valencia que me han recomendado</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row p-3">
+            <button class="showfilters btn btn-primary">Show Filters</button>
+        </div>
+        <div class="row p-3 filters hidden">
+            <div class="filter filter-style filter-all filter-applied" data-filter="all">all</div>
+            {% for tag in tags %}
+            <div class="filter filter-style filter-tag" data-filter="{{tag}}">{{tag}}</div>
+            {% endfor %}
+            {% for zone in zones %}
+            <div class="filter filter-style filter-zone" data-filter="{{zone}}">{{zone}}</div>
+            {% endfor %}
+        </div>
+        <div class="row pt-3">
+            <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Dónde</th>
+                    <th scope="col">Tags</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for restaurant in restaurants %}
+                <tr class="filter-item" data-filters='{{restaurant.filters_json}}'>
+                    <td>{{restaurant.title}}</td>
+                    <td>{{restaurant.description}}</td>
+                    <td>{{restaurant.price}}</td>
+                    <td>
+                        {% for zone in restaurant.zones %}
+                        <p class="filter card-zone" data-filter="{{zone}}">{{zone}}</p>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for tag in restaurant.tags %}
+                        <p class="filter card-tag" data-filter="{{tag}}">{{tag}}</p>
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="static/js/main.js"></script>
+  </body>
+</html>

@@ -1,20 +1,29 @@
-function clickEvent (event) {
+function clickFilterEvent (event) {
     const filter = $( event.target ).data("filter");
+
+    if ($( event.target ).hasClass('filter-applied')) {
+        $( event.target ).removeClass('filter-applied');
+        $( ".filter-item" ).each(function() {
+            $(this).show();
+        });
+        return;
+    }
+
     $( ".filter" ).each(function() {
         $(this).removeClass('filter-applied');
     })
     $( event.target ).addClass('filter-applied');
 
     if (filter === 'all') {
-        $( ".card" ).each(function() {
-            $(this).parent().show();
+        $( ".filter-item" ).each(function() {
+            $(this).show();
         });
         return;
     }
 
-    $( ".card" ).each(function() {
-        var card = $(this);
-        const filters = card.data("filters");
+    $( ".filter-item" ).each(function() {
+        var item = $(this);
+        const filters = item.data("filters");
         var filterExist = false;
         filters.forEach(function(element) {
             if (element === filter){
@@ -22,9 +31,9 @@ function clickEvent (event) {
             }
         });
         if(filterExist){
-            card.parent().show();
+            item.show();
         } else {
-            card.parent().hide();
+            item.hide();
         }
     });
 }
@@ -36,7 +45,7 @@ $( document ).ready(function() {
             return text === "Show Filters" ? "Hide Filters" : "Show Filters";
         });
     });
-    $( ".filter" ).click(clickEvent);
+    $( ".filter" ).click(clickFilterEvent);
     $( ".button-arrow-left" ).click(function(event){
         var nextImage = $(event.target).parent().data('current-image');
         const imageList = $(event.target).parent().data('image-list');
