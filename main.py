@@ -1,11 +1,12 @@
 import gspread
 import json
 import os
+import sys
+from os import listdir
+from os.path import isfile, join
 from jinja2 import Environment, FileSystemLoader
 from oauth2client.service_account import ServiceAccountCredentials
 from optimizeimage import optimize_url
-from os import listdir
-from os.path import isfile, join
 import time
 import locale
 
@@ -21,18 +22,9 @@ scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/au
 SPREADSHEET_ID = os.environ.get('SPREADSHEET_ID')
 TEMPLATES_DIR = 'templates'
 OUTPUT_TEMPLATES_DIR = '.'
+CACHE_FILE = '.gspread_cache'
 locale.setlocale(locale.LC_TIME, "es_ES")
 
-# Authorization
-import time
-start = time.time()
-credentials = ServiceAccountCredentials.from_json_keyfile_name('credentials_service.json', scope)
-gc = gspread.authorize(credentials)
-
-# Open a worksheet from spreadsheet with one shot
-sh = gc.open_by_key(SPREADSHEET_ID)
-wks = sh.worksheet("DB")
-end = time.time()
 
 class Restaurant():
     title = None
@@ -95,27 +87,50 @@ def get_all_zones(restaurants, zone_column=3):
 
     return list(zones)
 
-# Get all restaurants
-cell_list = wks.get_all_values()
-titles = cell_list[0]
-restaurants = [Restaurant(titles, row) for row in cell_list[1:]]
-tags = get_all_tags(restaurants)
-tags.sort()
-zones = get_all_zones(restaurants)
-zones.sort()
+if __name__ == "__main__":
+    # Authorization
+    credentials = ServiceAccountCredentials.from_json_keyfile_name('credentials_service.json', scope)
+    gc = gspread.authorize(credentials)
 
-env = Environment(loader=FileSystemLoader(TEMPLATES_DIR))
+    # Open a worksheet from spreadsheet with one shot
+    sh = gc.open_by_key(SPREADSHEET_ID)
+    wks = sh.worksheet("DB")
 
+    # Get all cells
+    cell_list = wks.get_all_values()
+    cell_list_json = json.dumps(cell_list)
 
-template_files = [f for f in listdir(TEMPLATES_DIR) if isfile(join(TEMPLATES_DIR, f))]
-for f in template_files:
-    template = env.get_template(f)
-    context = {
-        'restaurants': restaurants,
-        'tags': tags,
-        'zones': zones,
-        'date': time.strftime("%a, %d %b %Y %H:%M:%S"),
-    }
-    output_from_parsed_template = template.render(context)
-    with open(join(OUTPUT_TEMPLATES_DIR, f), "w") as fh:
-        fh.write(output_from_parsed_template)
+    # Decide if cache is changed
+    if os.environ.get('ONLY_BUILD_IF_DATA_CHANGES', 'False') == 'True':
+        if isfile(CACHE_FILE):
+            with open(CACHE_FILE, "r") as fh:
+                cell_list_cached = fh.read()
+                if cell_list_cached == cell_list_json:
+                    print("Build no generated. Data no changed.")
+                    sys.exit(1)
+
+    # Cache cells
+    with open(CACHE_FILE, "w") as fh:
+        fh.write(cell_list_json)
+
+    # Convert cells to Restaurants
+    titles = cell_list[0]
+    restaurants = [Restaurant(titles, row) for row in cell_list[1:]]
+    tags = get_all_tags(restaurants)
+    tags.sort()
+    zones = get_all_zones(restaurants)
+    zones.sort()
+
+    env = Environment(loader=FileSystemLoader(TEMPLATES_DIR))
+    template_files = [f for f in listdir(TEMPLATES_DIR) if isfile(join(TEMPLATES_DIR, f))]
+    for f in template_files:
+        template = env.get_template(f)
+        context = {
+            'restaurants': restaurants,
+            'tags': tags,
+            'zones': zones,
+            'date': time.strftime("%a, %d %b %Y %H:%M:%S"),
+        }
+        output_from_parsed_template = template.render(context)
+        with open(join(OUTPUT_TEMPLATES_DIR, f), "w") as fh:
+            fh.write(output_from_parsed_template)
