@@ -1,12 +1,13 @@
 #!/bin/bash
 
 DIRECTORY=.
+
+
+cd $DIRECTORY
 UPSTREAM=${1:-'@{u}'}
 LOCAL=$(git rev-parse @)
 REMOTE=$(git rev-parse "$UPSTREAM")
 BASE=$(git merge-base @ "$UPSTREAM")
-
-cd $DIRECTORY
 if [ $LOCAL = $REMOTE ]; then
     ONLY_BUILD_IF_DATA_CHANGES=True pipenv run python main.py
 elif [ $LOCAL = $BASE ]; then
