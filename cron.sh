@@ -1,5 +1,5 @@
 #!/bin/bash
-export PATH=$PATH:/usr/local/bin/pipenv
+export PATH=$PATH:/usr/local/bin
 
 git fetch
 UPSTREAM=${1:-'@{u}'}
