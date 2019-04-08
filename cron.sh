@@ -1,9 +1,6 @@
 #!/bin/bash
+export PATH=$PATH:/usr/local/bin
 
-DIRECTORY=.
-
-
-cd $DIRECTORY
 git fetch
 UPSTREAM=${1:-'@{u}'}
 LOCAL=$(git rev-parse @)
