@@ -1,6 +1,6 @@
 function clickFilterEvent (event) {
     const filter = $( event.target ).data("filter");
-
+    console.log("ETNRA");
     if ($( event.target ).hasClass('filter-applied')) {
         $( event.target ).removeClass('filter-applied');
         $( ".filter-item" ).each(function() {
@@ -65,5 +65,14 @@ $( document ).ready(function() {
         const image = imageList[nextImage];
         $(event.target).parent().data('current-image', nextImage);
         $(event.target).parent().css("background-image", 'url(' + image + ')');
+    });
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlLabel = urlParams.get('label');
+    $('.filter', $('.filters')).each(function () {
+        if ($(this).data('filter') === urlLabel) {
+            $(".showfilters").trigger( "click" );
+            $(this).trigger( "click" );
+            console.log("Trigger");
+        }
     });
 });

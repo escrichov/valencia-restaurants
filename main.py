@@ -124,6 +124,9 @@ if __name__ == "__main__":
     env = Environment(loader=FileSystemLoader(TEMPLATES_DIR))
     template_files = [f for f in listdir(TEMPLATES_DIR) if isfile(join(TEMPLATES_DIR, f))]
     for f in template_files:
+        if f.startswith('template'):
+            continue
+
         template = env.get_template(f)
         context = {
             'restaurants': restaurants,
