@@ -36,7 +36,7 @@ def convert_to_jpg(in_filename, out_filename):
 
     # Convert to jpg
     im = im.convert('RGB')
-    i.save(out_filename)
+    im.save(out_filename)
 
 
 def download_image(url, path):
